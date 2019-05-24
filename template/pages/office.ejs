@@ -1,0 +1,76 @@
+<%- layout('../layout.ejs') -%>
+
+
+
+<section class="content-header">
+        <h1>
+          Office
+          <small>Office List</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">Office</li>
+        </ol>
+      </section>
+
+<section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+         
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table>
+                <td>
+                    <a href="/office/new"><button type="button" class="btn btn-block btn-primary">New Office</button></a>
+                </td>
+            </table> 
+          </div>
+          <div class="box-body">
+             
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Description</th>
+
+                <th>business hours</th>
+
+                <th>Options</th>
+                
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>BROFFL</td>
+                <td>00:00 - 23:59</td>
+                <td><a href="/office/edit"><i class="fa fa-edit"></i></a>
+                  <a href="/admin/office/remove/"><i class="fa fa-trash"></i></a>
+                </td>   
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- jQuery 3 -->
+<script src="bower_components/jquery/style/jquery.min.js"></script>
+<!-- DataTables -->
+<script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript">
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>

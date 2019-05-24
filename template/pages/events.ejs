@@ -1,0 +1,134 @@
+<%- layout('../layout.ejs') -%>
+
+
+
+<section class="content-header">
+        <h1>
+          Events
+          <small>Events List</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">Office</li>
+        </ol>
+      </section>
+
+<section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+         
+          <!-- /.box-header -->
+          
+          <div class="box-body">
+             
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Office</th>
+                <th>Group</th>
+                <th>Host</th>
+                <th>PostMortem</th>
+                <th>Options</th>
+                
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>1</td>
+                <td>BRLV</td>
+                <td>is-infraestructura</td>
+                <td>BRLVSTACK08</td>
+                <td><i class="fa fa-check" style="color:green"></i></td>
+                <td><a href="/postmortem1">
+                      <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
+                    </a>
+                    <a href="/events/1">
+                      <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> INFO</button>
+                    </a>
+                </td>
+              </tr>
+              <tr>
+                    <td>2</td>
+                    <td>BRSP</td>
+                    <td>is-infraestructura</td>
+                    <td>BRSPSTACK10</td>
+                    <td><i class="fa fa-close" style="color:red"></i></td>
+                    <td><a href="/postmortem">
+                          <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
+                        </a>
+                        <a href="/events/1">
+                          <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> INFO</button>
+                        </a>
+                    </td>
+                  </tr>
+              
+              <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Office edit</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form-horizontal" method="POST" action="/admin/office/">
+
+                        <div class="form-group">
+                          <label for="inputEmail" class="col-sm-2 control-label">Name</label>
+      
+                           
+                            <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputEmail" name="office" value="">
+                            </div>
+                        </div><br><br>
+                      <label for="inputEmail" class="col-sm-2 control-label">Business Hours</label>
+                      <div class="form-group">       
+                          <div class="form-horizontal">
+                            <label class="col-sm-2">Initial:</label>
+                            <input type="text" class="col-sm-2" id="inputInitialHour" name="InitialHour">
+                            <label class="col-sm-2">  Final: </label>
+                            <input type="text" class="col-sm-2" id="inputEndHour" name="EndHour">
+                          </div>
+                      </div><br><br>
+                       
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      <button type="submmit" class="btn btn-primary">Update</button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+                  
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- jQuery 3 -->
+<script src="bower_components/jquery/style/jquery.min.js"></script>
+<!-- DataTables -->
+<script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript">
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>

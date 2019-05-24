@@ -1,0 +1,109 @@
+<%- layout('../layout.ejs') -%>
+
+
+
+
+<section class="content-header">
+        <h1>
+          New office
+          <small>Add new office</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="/events"><i class="fa fa-dashboard"></i>Event</a></li>
+          <li class="active">New</li>
+        </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+        <div class="box">
+
+<!-- /.box-header -->
+<!-- form start -->
+            <form role="form" method="post">
+            <div class="box-body">
+                <div class="form-group col-lg-12">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter name here..." required></input>
+                </div>
+                <div class="form-group col-lg-8">
+                        <label>Location</label>
+                        <input type="text" class="form-control" name="location" placeholder="Enter location here..." required></input>
+                        <hr>
+                </div>
+                <div class="form-group col-lg-4">
+                        <label>Timezone</label>
+                        <input type="text" class="form-control" name="timezone" placeholder="Enter timezone here..."></input>
+                        <hr>
+                </div>
+                
+                <div class="form-group col-lg-2">
+
+                    <label>Monday Hour</label>
+                    <div class="input-group input-daterange col-lg-12">
+                            <input type="text" class="form-control" name="monday_hourFrom" placeholder="00:00" required>
+                            <div class="input-group-addon">to</div>
+                            <input type="text" class="form-control" name="monday_hourTo" placeholder="23:59" required>
+                        </div>
+                </div>
+                <div class="form-group col-lg-2">
+                    <label>Tuesday Hour</label>
+                    <div class="input-group input-daterange col-lg-12">
+                            <input type="text" class="form-control" name="tuesday_hourFrom" placeholder="00:00" required>
+                            <div class="input-group-addon">to</div>
+                            <input type="text" class="form-control" name="tuesday_hourTo" placeholder="23:59" required>
+                        </div>
+                </div>
+                <div class="form-group col-lg-2">
+                    <label>Wednesday Hour</label>
+                    <div class="input-group input-daterange col-lg-12">
+                            <input type="text" class="form-control" name="wednesday_hourFrom" placeholder="00:00" required>
+                            <div class="input-group-addon">to</div>
+                            <input type="text" class="form-control" name="wednesday_hourTo" placeholder="23:59" required>
+                        </div>
+                </div>
+                <div class="form-group col-lg-2">
+                    <label>Thursday Hour</label>
+                    <div class="input-group input-daterange col-lg-12">
+                            <input type="text" class="form-control" name="thursday_hourFrom" placeholder="00:00" required>
+                            <div class="input-group-addon">to</div>
+                            <input type="text" class="form-control" name="thursday_hourTo" placeholder="23:59" required>
+                        </div>
+                </div>
+                <div class="form-group col-lg-2">
+                    <label>Friday Hour</label>
+                    <div class="input-group input-daterange col-lg-12">
+                            <input type="text" class="form-control" name="friday_hourFrom" placeholder="00:00" required>
+                            <div class="input-group-addon">to</div>
+                            <input type="text" class="form-control" name="friday_hourTo" placeholder="23:59" required>
+                        </div>
+                </div>
+                <div class="form-group col-lg-5">
+                    <label>Saturday Hour</label>
+                    <div class="input-group input-daterange col-lg-12">
+                            <input type="text" class="form-control" name="saturday_hourFrom" placeholder="08:00">
+                            <div class="input-group-addon">to</div>
+                            <input type="text" class="form-control" name="saturday_hourTo" placeholder="18:00">
+                        </div>
+                </div>
+                <div class="form-group col-lg-5">
+                    <label>Sunday Hour</label>
+                    <div class="input-group input-daterange col-lg-12">
+                            <input type="text" class="form-control" name="sunday_hourFrom" placeholder="08:00">
+                            <div class="input-group-addon">to</div>
+                            <input type="text" class="form-control" name="sunday_hourTo" placeholder="18:00">
+                        </div>
+                </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer col-lg-12">
+                <button type="submit"  class="btn btn-primary">Create</button>
+                <a class="btn btn-danger" href="/office" role="button">Close</a>
+
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</section>
