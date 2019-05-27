@@ -71,16 +71,16 @@
 
 <script>
   $.get('http://internal-systems.ml.com/uptime-test/offices', (data, status) => {
-    console.log(data);
     if (status == 'success') {
       var list = document.getElementById("list")
-      var innerHTML = "";
+      var innerHTML = "<tr>";
       data.forEach(office => {
-        innerHTML += `<tr><td>${office.description}</td>`;
+        innerHTML += `<td>${office.description}</td>`;
         innerHTML += `<td>${office.ponderation}</td>`;
         innerHTML += `<td><a href="/office/edit"><i class="fa fa-edit"></i></a>
                   <a href="/admin/office/remove/"><i class="fa fa-trash"></i></a>
-                </td></tr>`;
+                </td>`;
+        innerHTML += "</tr>";
         list.innerHTML = innerHTML;
       });
     }
