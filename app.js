@@ -48,11 +48,11 @@ app.post('/office/edit', function (req, res){
 app.get('/events', (req, res) => {
         res.render('./pages/events')
     })
+    
+app.get('/events/:id', function (req, res){
 
-
-app.get('/events/1', (req, res) => {
-        res.render('./pages/eventInfo')
-    })
+        res.render('./pages/eventInfo', {id: req.params})
+    });
 
 app.get('/postmortem', (req, res) => {
         res.render('./pages/postmortem')

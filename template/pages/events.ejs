@@ -28,42 +28,14 @@
                 <th>ID</th>
                 <th>Office</th>
                 <th>Group</th>
-                <th>Host</th>
+                <th>Issue</th>
                 <th>PostMortem</th>
                 <th>Options</th>
                 
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td>1</td>
-                <td>BRLV</td>
-                <td>is-infraestructura</td>
-                <td>BRLVSTACK08</td>
-                <td><i class="fa fa-check" style="color:green"></i></td>
-                <td><a href="/postmortem1">
-                      <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
-                    </a>
-                    <a href="/events/1">
-                      <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> INFO</button>
-                    </a>
-                </td>
-              </tr>
-              <tr>
-                    <td>2</td>
-                    <td>BRSP</td>
-                    <td>is-infraestructura</td>
-                    <td>BRSPSTACK10</td>
-                    <td><i class="fa fa-close" style="color:red"></i></td>
-                    <td><a href="/postmortem">
-                          <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
-                        </a>
-                        <a href="/events/1">
-                          <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> INFO</button>
-                        </a>
-                    </td>
-                  </tr>
-              
+              <tbody id="list">
+              </tbody>
               <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -114,7 +86,7 @@
     <!-- /.row -->
   </section>
   <!-- jQuery 3 -->
-<script src="bower_components/jquery/style/jquery.min.js"></script>
+  <script src="bower_components/jquery/style/jquery.min.js"></script>
 <!-- DataTables -->
 <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -132,3 +104,32 @@
     })
   })
 </script>
+<script>
+  $.get('http://internal-systems.ml.com/uptime-test/downtimes', (data, status) => {
+    if (status == 'success') {
+      var list = document.getElementById("list")
+      var innerHTML = "<tr>";
+      data.forEach(downtimes => {
+        innerHTML += `<td>${downtimes.id}</td>`;
+        innerHTML += `<td>${downtimes.office}</td>`;
+        innerHTML += `<td>${downtimes.group}</td>`;
+        innerHTML += `<td>${downtimes.metric}</td>`;
+        if(downtimes.postMortem == null){
+          innerHTML += `<td><i class="fa fa-close" style="color:red"></i></td>`;
+        }
+        else{
+          innerHTML += `<td><i class="fa fa-check" style="color:green"></i></td>`;
+        }
+        innerHTML += `<td><a href="/events/${downtimes.id}">
+                        <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
+                      </a>
+                      <a href="/events/${downtimes.id}">
+                          <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> INFO</button>
+                      </a>
+                      </td>`;
+        innerHTML += "</tr>";
+        list.innerHTML = innerHTML;
+      });
+    }
+  })
+  </script>
