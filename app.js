@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
 const faker = require('faker')
 const bodyParser = require('body-parser')
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
         res.render('./pages/home')
     })
 
-app.use(express.static(__dirname + '/static'))
+app.use(express.static(path.join(__dirname, 'static')))
 app.listen(3000)
 
 module.exports = app;
