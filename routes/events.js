@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    return res.render('base');
-});
+    res.render('./pages/events')
+})
 
-router.post('/', (req, res) => {
-    return res.send({message: "POST OK para raiz"});
-});
 
+router.get('/:id', (req, res) => {
+    res.render('./pages/eventInfo')
+})
 
 module.exports = router;
