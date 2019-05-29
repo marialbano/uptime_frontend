@@ -5,12 +5,12 @@
 
 <section class="content-header">
         <h1>
-          New office
-          <small>Add new office</small>
+          Edit office
+          <small>Edit office</small>
         </h1>
         <ol class="breadcrumb">
           <li><a href="/events"><i class="fa fa-dashboard"></i>Event</a></li>
-          <li class="active">New</li>
+          <li class="active">Edit</li>
         </ol>
 </section>
 
@@ -25,16 +25,16 @@
             <div class="box-body">
                 <div class="form-group col-lg-12">
                     <label>Name</label>
-                    <input type="text" class="form-control" disabled name="name" value ="BROFFL"></input>
+                    <input id="name" type="text" class="form-control" disabled></input>
                 </div>
                 <div class="form-group col-lg-8">
                         <label>Location</label>
-                        <input type="text" class="form-control" name="location" disabled value ="São Paulo - Brazil" placeholder="Enter location here..." required></input>
+                        <input type="text" class="form-control" name="location" disabled value ="São Paulo - Brazil" required></input>
                         <hr>
                 </div>
                 <div class="form-group col-lg-4">
                         <label>Timezone</label>
-                        <input type="text" class="form-control" name="timezone" disabled value ="UTC -3"></input>
+                        <input id="timezone" type="text" class="form-control" disabled></input>
                         <hr>
                 </div>
                 
@@ -42,57 +42,57 @@
 
                     <label>Monday Hour</label>
                     <div class="input-group input-daterange col-lg-12">
-                            <input type="text" class="form-control" name="monday_hourFrom" value = "06:00" required>
+                            <input type="text" class="form-control" id="monday_hourFrom">
                             <div class="input-group-addon">to</div>
-                            <input type="text" class="form-control" name="monday_hourTo" value = "23:59" required>
+                            <input type="text" class="form-control" id="monday_hourTo">
                         </div>
                 </div>
                 <div class="form-group col-lg-2">
                     <label>Tuesday Hour</label>
                     <div class="input-group input-daterange col-lg-12">
-                            <input type="text" class="form-control" name="tuesday_hourFrom" value = "06:00" required>
+                            <input type="text" class="form-control" id="tuesday_hourFrom">
                             <div class="input-group-addon">to</div>
-                            <input type="text" class="form-control" name="tuesday_hourTo" value = "23:59" required>
+                            <input type="text" class="form-control" id="tuesday_hourTo">
                         </div>
                 </div>
                 <div class="form-group col-lg-2">
                     <label>Wednesday Hour</label>
                     <div class="input-group input-daterange col-lg-12">
-                            <input type="text" class="form-control" name="wednesday_hourFrom" value = "06:00" required>
+                            <input type="text" class="form-control" id="wednesday_hourFrom">
                             <div class="input-group-addon">to</div>
-                            <input type="text" class="form-control" name="wednesday_hourTo" value = "23:59" required>
+                            <input type="text" class="form-control" id="wednesday_hourTo">
                         </div>
                 </div>
                 <div class="form-group col-lg-2">
                     <label>Thursday Hour</label>
                     <div class="input-group input-daterange col-lg-12">
-                            <input type="text" class="form-control" name="thursday_hourFrom" value = "06:00" required>
+                            <input type="text" class="form-control" id="thursday_hourFrom">
                             <div class="input-group-addon">to</div>
-                            <input type="text" class="form-control" name="thursday_hourTo" value = "23:59" required>
+                            <input type="text" class="form-control" id="thursday_hourTo">
                         </div>
                 </div>
                 <div class="form-group col-lg-2">
                     <label>Friday Hour</label>
                     <div class="input-group input-daterange col-lg-12">
-                            <input type="text" class="form-control" name="friday_hourFrom" value = "06:00" required>
+                            <input type="text" class="form-control" id="friday_hourFrom">
                             <div class="input-group-addon">to</div>
-                            <input type="text" class="form-control" name="friday_hourTo" value = "23:59" required>
+                            <input type="text" class="form-control" id="friday_hourTo">
                         </div>
                 </div>
                 <div class="form-group col-lg-5">
                     <label>Saturday Hour</label>
                     <div class="input-group input-daterange col-lg-12">
-                            <input type="text" class="form-control" name="saturday_hourFrom" value = "06:00">
+                            <input type="text" class="form-control" id="saturday_hourFrom">
                             <div class="input-group-addon">to</div>
-                            <input type="text" class="form-control" name="saturday_hourTo" value = "18:00">
+                            <input type="text" class="form-control" id="saturday_hourTo">
                         </div>
                 </div>
                 <div class="form-group col-lg-5">
                     <label>Sunday Hour</label>
                     <div class="input-group input-daterange col-lg-12">
-                            <input type="text" class="form-control" name="sunday_hourFrom" value = "08:00">
+                            <input type="text" class="form-control" id="sunday_hourFrom">
                             <div class="input-group-addon">to</div>
-                            <input type="text" class="form-control" name="sunday_hourTo" value = "14:00">
+                            <input type="text" class="form-control" id="sunday_hourTo">
                         </div>
                 </div>
             <!-- /.box-body -->
@@ -107,3 +107,47 @@
         </div>
     </div>
 </section>
+
+<script src="../../bower_components/jquery/style/jquery.min.js"></script>
+
+<script>
+    var id = '<%= id["id"] %>';
+    var url = `http://internal-systems.ml.com/uptime-test/offices/${id}?with=schedules`
+    $.get(url, (data, status) => {
+        console.log(data)
+      if (status == 'success') {
+          console.log(data.description)
+        document.getElementById("name").value = data.description;
+        document.getElementById("timezone").value = data.timeZoneOffset;
+
+        const getSunday = data.schedules.find(schedule => schedule.weekday === 0);
+        document.getElementById("sunday_hourFrom").value = getSunday.hourFrom;
+        document.getElementById("sunday_hourTo").value = getSunday.hourTo;
+
+        const getSaturday = data.schedules.find(schedule => schedule.weekday === 1);
+        document.getElementById("saturday_hourFrom").value = getSaturday.hourFrom;
+        document.getElementById("saturday_hourTo").value = getSaturday.hourTo;
+
+        const getFriday = data.schedules.find(schedule => schedule.weekday === 2);
+        document.getElementById("friday_hourFrom").value = getFriday.hourFrom;
+        document.getElementById("friday_hourTo").value = getFriday.hourTo;
+
+        const getThursday = data.schedules.find(schedule => schedule.weekday === 3);
+        document.getElementById("thursday_hourFrom").value = getThursday.hourFrom;
+        document.getElementById("thursday_hourTo").value = getThursday.hourTo;
+
+        const getWednesday = data.schedules.find(schedule => schedule.weekday === 4);
+        document.getElementById("wednesday_hourFrom").value = getWednesday.hourFrom;
+        document.getElementById("wednesday_hourTo").value = getWednesday.hourTo;
+
+        const getTuesday = data.schedules.find(schedule => schedule.weekday === 5);
+        document.getElementById("tuesday_hourFrom").value = getTuesday.hourFrom;
+        document.getElementById("tuesday_hourTo").value = getTuesday.hourTo;
+
+        const getMonday = data.schedules.find(schedule => schedule.weekday === 6);
+        document.getElementById("monday_hourFrom").value = getMonday.hourFrom;
+        document.getElementById("monday_hourTo").value = getMonday.hourTo;
+
+      }
+    })
+    </script>

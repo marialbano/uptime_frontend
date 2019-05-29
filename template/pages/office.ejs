@@ -3,15 +3,15 @@
 
 
 <section class="content-header">
-        <h1>
-          Office
-          <small>Office List</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Office</li>
-        </ol>
-      </section>
+  <h1>
+    Office
+    <small>Office List</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Office</li>
+  </ol>
+</section>
 
 <section class="content">
     <div class="row">
@@ -77,7 +77,7 @@
       data.forEach(office => {
         innerHTML += `<td>${office.description}</td>`;
         innerHTML += `<td>${office.ponderation}</td>`;
-        innerHTML += `<td><a href="/office/edit"><i class="fa fa-edit"></i></a>
+        innerHTML += `<td><a href="/office/edit/${office.id}"><i class="fa fa-edit"></i></a>
                   <a href="/admin/office/remove/"><i class="fa fa-trash"></i></a>
                 </td>`;
         innerHTML += "</tr>";
