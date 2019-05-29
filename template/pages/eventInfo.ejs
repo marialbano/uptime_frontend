@@ -42,11 +42,11 @@
 
                 <div class="form-group col-lg-12">
                     <label>Description</label>
-                    <textarea rows="8" cols="50" name="description" id="description" class="form-control" required="required" placeholder="Enter description here..."></textarea>
+                    <textarea rows="8" disabled cols="50" name="description" id="description" class="form-control" required="required" placeholder="Enter description here..."></textarea>
                 </div>
                 <div class="form-group col-lg-12">
                         <label>Status</label>                   
-                        <select name="Status" id="status" class="form-control">
+                        <select name="Status" disabled id="status" class="form-control">
                         <option selected="selected" value="resolved">Resolved</option>
                         <option value="partial_resolved">Partial Resolved</option>
                         <option value="not_solved">Not Solved</option>
@@ -57,7 +57,6 @@
             <!-- /.box-body -->
 
             <div class="box-footer">
-                <button type="submit" id="create" class="btn btn-primary">Create</button>
                 <a class="btn btn-danger" href="/events" role="button">Close</a>
 
             </div>
@@ -76,12 +75,8 @@
         document.getElementById("metric").value = data.metric;
         document.getElementById("startDate").value = new Date(data.startDateTime).toLocaleString();
         document.getElementById("endDate").value = new Date(data.endDateTime).toLocaleString();
-        console.log(data.comments)
-        if(data.comments != null){
-            document.getElementById("description").value = data.comments;
-            document.getElementById("status").value = data.postMortemStatus;
-            $('#create').prop('disabled', true);
-        }
+        document.getElementById("description").value = data.comments;
+        document.getElementById("status").value = data.postMortemStatus;
       }
     })
     </script>
