@@ -33,19 +33,13 @@
               <tr>
                 <th>Description</th>
 
-                <th>business hours</th>
+                <th>Ponderation</th>
 
                 <th>Options</th>
                 
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td>BROFFL</td>
-                <td>00:00 - 23:59</td>
-                <td><a href="/office/edit"><i class="fa fa-edit"></i></a>
-                  <a href="/admin/office/remove/"><i class="fa fa-trash"></i></a>
-                </td>   
+              <tbody id="list">
             </table>
           </div>
           <!-- /.box-body -->
@@ -74,3 +68,21 @@
     })
   })
 </script>
+
+<script>
+  $.get('http://internal-systems.ml.com/uptime-test/offices', (data, status) => {
+    if (status == 'success') {
+      var list = document.getElementById("list")
+      var innerHTML = "<tr>";
+      data.forEach(office => {
+        innerHTML += `<td>${office.description}</td>`;
+        innerHTML += `<td>${office.ponderation}</td>`;
+        innerHTML += `<td><a href="/office/edit"><i class="fa fa-edit"></i></a>
+                  <a href="/admin/office/remove/"><i class="fa fa-trash"></i></a>
+                </td>`;
+        innerHTML += "</tr>";
+        list.innerHTML = innerHTML;
+      });
+    }
+  })
+  </script>
