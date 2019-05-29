@@ -25,20 +25,21 @@ app.get('/office', (req, res) => {
         res.render('./pages/office')
     })
 
-app.get('/office/new', urlencodedParser, function (req, res){
+app.get('/office/new', function (req, res){
         res.render('./pages/newOffice')
     });
 
-app.post('/office/new', urlencodedParser, function (req, res){
+app.post('/office/new', function (req, res){
         console.log(req.body)
         res.render('./pages/office')
     });
 
-app.get('/office/edit', urlencodedParser, function (req, res){
-        res.render('./pages/editOffice')
+app.get('/office/edit/:id', function (req, res){
+
+        res.render('./pages/editOffice', {id: req.params})
     });
 
-app.post('/office/edit', urlencodedParser, function (req, res){
+app.post('/office/edit', function (req, res){
         console.log(req.body)
         res.render('./pages/office')
     });
