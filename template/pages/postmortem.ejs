@@ -73,6 +73,12 @@
         document.getElementById("metric").value = data.metric;
         document.getElementById("startDate").value = new Date(data.startDateTime).toLocaleString();
         document.getElementById("endDate").value = new Date(data.endDateTime).toLocaleString();
+        if(data.postMortem){
+            document.getElementById("description").value = data.comments;
+            document.getElementById("status").value = data.postMortemStatus;
+            $('#create').prop('disabled', true);
+            $('#description').prop('disabled', true);
+        }
       }
     })
     </script>
