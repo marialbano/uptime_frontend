@@ -18,7 +18,7 @@
 
 <!-- /.box-header -->
 <!-- form start -->
-            <form role="form" method="post">
+        <form role="form" method="post">
             <div class="box-body">
                 <div class="form-group col-lg-2">
                     <label>ID</label>
@@ -31,26 +31,26 @@
                 <div class="form-group col-lg-6">
                   <label>Start Date</label>
                   <input type="text" class="form-control" id="startDate" disabled></input>
-              </div>
-              <div class="form-group col-lg-6">
-                <label>End Date</label>
-                <input type="text" class="form-control" id="endDate" disabled></input>
-            </div>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>End Date</label>
+                    <input type="text" class="form-control" id="endDate" disabled></input>
+                </div>
 
                 <div class="form-group col-lg-12">
                     <label>Description</label>
                     <textarea rows="8" cols="50" name="description" id="description" class="form-control" required="required" placeholder="Enter description here..."></textarea>
                 </div>
                 <div class="form-group col-lg-12">
-                        <label>Status</label>                   
-                        <select name="Status" id="status" class="form-control">
+                    <label>Status</label>                   
+                    <select name="Status" id="status" class="form-control">
                         <option selected="selected" value="resolved">Resolved</option>
                         <option value="partial_resolved">Partial Resolved</option>
                         <option value="not_solved">Not Solved</option>
-                        </select>
+                    </select>
 
-                    </div>
                 </div>
+            </div>
             <!-- /.box-body -->
 
             <div class="box-footer">
@@ -58,7 +58,7 @@
                 <a class="btn btn-danger" href="/events" role="button">Close</a>
 
             </div>
-            </form>
+        </form>
         </div>
         </div>
     </div>
@@ -73,6 +73,12 @@
         document.getElementById("metric").value = data.metric;
         document.getElementById("startDate").value = new Date(data.startDateTime).toLocaleString();
         document.getElementById("endDate").value = new Date(data.endDateTime).toLocaleString();
+        if(data.postMortem){
+            document.getElementById("description").value = data.comments;
+            document.getElementById("status").value = data.postMortemStatus;
+            $('#create').prop('disabled', true);
+            $('#description').prop('disabled', true);
+        }
       }
     })
     </script>

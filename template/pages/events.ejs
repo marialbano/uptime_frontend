@@ -9,7 +9,7 @@
         </h1>
         <ol class="breadcrumb">
           <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Office</li>
+          <li class="active">Events</li>
         </ol>
       </section>
 
@@ -25,12 +25,12 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th>ID</th>
-                <th>Office</th>
-                <th>Group</th>
+                <th width="5%">ID</th>
+                <th width="15%">Office</th>
+                <th width="25%">Group</th>
                 <th>Issue</th>
-                <th>PostMortem</th>
-                <th>Options</th>
+                <th width="5%">PostMortem</th>
+                <th width="5%">Options</th>
                 
               </tr>
               </thead>
@@ -92,7 +92,7 @@
 <script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
 <script type="text/javascript">
-  $(function () {
+  function dataTables() {
     $('#example1').DataTable()
     $('#example2').DataTable({
       'paging'      : true,
@@ -102,7 +102,7 @@
       'info'        : true,
       'autoWidth'   : false
     })
-  })
+  }
 </script>
 <script>
   $.get('http://internal-systems.ml.com/uptime-test/downtimes', (data, status) => {
@@ -119,9 +119,6 @@
           innerHTML += `<td><a href="/postmortem/${downtimes.id}">
                         <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
                       </a>
-                      <a href="#">
-                          <button type="button" disabled class="btn btn-primary btn-xs"><i class="fa fa-info"></i> INFO</button>
-                      </a>
                       </td>`;
         }
         else{
@@ -129,15 +126,13 @@
           innerHTML += `<td><a href="#">
                         <button type="button" disabled class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
                       </a>
-                      <a href="/events/${downtimes.id}">
-                          <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> INFO</button>
-                      </a>
                       </td>`;
         }
         
         innerHTML += "</tr>";
         list.innerHTML = innerHTML;
       });
+      dataTables();
     }
   })
   </script>
