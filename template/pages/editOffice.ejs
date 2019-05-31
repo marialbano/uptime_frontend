@@ -21,16 +21,20 @@
 
 <!-- /.box-header -->
 <!-- form start -->
-            <form role="form" method="post">
             <div class="box-body">
                 <div class="form-group col-lg-12">
-                    <label>Name</label>
-                    <input id="name" type="text" class="form-control" disabled></input>
+                    <label>Description</label>
+                    <input id="description" type="text" class="form-control" disabled></input>
                 </div>
-                <div class="form-group col-lg-8">
-                        <label>Location</label>
-                        <input type="text" class="form-control" name="location" disabled value ="São Paulo - Brazil" required></input>
+                <div class="form-group col-lg-4">
+                        <label>Ponderation</label>
+                        <input type="text" class="form-control" id="ponderation" disabled required></input>
                         <hr>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label>ID</label>
+                    <input type="text" class="form-control" id="id" disabled required></input>
+                    <hr>
                 </div>
                 <div class="form-group col-lg-4">
                         <label>Timezone</label>
@@ -98,54 +102,64 @@
             <!-- /.box-body -->
 
             <div class="box-footer col-lg-12">
-                <button type="submit"  class="btn btn-primary">Update</button>
+                <button id='btn' type="submit"  class="btn btn-primary">Update</button>
                 <a class="btn btn-danger" href="/office" role="button">Close</a>
 
             </div>
-            </form>
         </div>
         </div>
     </div>
 </section>
 
-<script src="../../bower_components/jquery/style/jquery.min.js"></script>
+
+<script src="/bower_components/jquery/style/jquery.min.js"></script>
+
+<script src="/updateOffice.js"></script>
+
 <script>
     var id = '<%= id["id"] %>';
     var url = `http://internal-systems.ml.com/uptime-test/offices/${id}?with=schedules`
     $.get(url, (data, status) => {
-        console.log(data)
       if (status == 'success') {
-          console.log(data.description)
-        document.getElementById("name").value = data.description;
+          console.log(data)
+        document.getElementById("description").value = data.description;
         document.getElementById("timezone").value = data.timeZoneOffset;
+        document.getElementById("ponderation").value = data.ponderation;
+        document.getElementById("id").value = data.id;
 
-        const getSunday = data.schedules.find(schedule => schedule.weekday === 0);
-        document.getElementById("sunday_hourFrom").value = getSunday.hourFrom;
-        document.getElementById("sunday_hourTo").value = getSunday.hourTo;
+        if (data.schedules == []) {
+            console.log('sem schedule')
 
-        const getSaturday = data.schedules.find(schedule => schedule.weekday === 1);
-        document.getElementById("saturday_hourFrom").value = getSaturday.hourFrom;
-        document.getElementById("saturday_hourTo").value = getSaturday.hourTo;
+        }else {
+            const getSunday = data.schedules.find(schedule => schedule.weekday === 0);
+            document.getElementById("sunday_hourFrom").value = getSunday.hourFrom;
+            document.getElementById("sunday_hourTo").value = getSunday.hourTo;
 
-        const getFriday = data.schedules.find(schedule => schedule.weekday === 2);
-        document.getElementById("friday_hourFrom").value = getFriday.hourFrom;
-        document.getElementById("friday_hourTo").value = getFriday.hourTo;
+            const getSaturday = data.schedules.find(schedule => schedule.weekday === 1);
+            document.getElementById("saturday_hourFrom").value = getSaturday.hourFrom;
+            document.getElementById("saturday_hourTo").value = getSaturday.hourTo;
 
-        const getThursday = data.schedules.find(schedule => schedule.weekday === 3);
-        document.getElementById("thursday_hourFrom").value = getThursday.hourFrom;
-        document.getElementById("thursday_hourTo").value = getThursday.hourTo;
+            const getFriday = data.schedules.find(schedule => schedule.weekday === 2);
+            document.getElementById("friday_hourFrom").value = getFriday.hourFrom;
+            document.getElementById("friday_hourTo").value = getFriday.hourTo;
 
-        const getWednesday = data.schedules.find(schedule => schedule.weekday === 4);
-        document.getElementById("wednesday_hourFrom").value = getWednesday.hourFrom;
-        document.getElementById("wednesday_hourTo").value = getWednesday.hourTo;
+            const getThursday = data.schedules.find(schedule => schedule.weekday === 3);
+            document.getElementById("thursday_hourFrom").value = getThursday.hourFrom;
+            document.getElementById("thursday_hourTo").value = getThursday.hourTo;
 
-        const getTuesday = data.schedules.find(schedule => schedule.weekday === 5);
-        document.getElementById("tuesday_hourFrom").value = getTuesday.hourFrom;
-        document.getElementById("tuesday_hourTo").value = getTuesday.hourTo;
+            const getWednesday = data.schedules.find(schedule => schedule.weekday === 4);
+            document.getElementById("wednesday_hourFrom").value = getWednesday.hourFrom;
+            document.getElementById("wednesday_hourTo").value = getWednesday.hourTo;
 
-        const getMonday = data.schedules.find(schedule => schedule.weekday === 6);
-        document.getElementById("monday_hourFrom").value = getMonday.hourFrom;
-        document.getElementById("monday_hourTo").value = getMonday.hourTo;
+            const getTuesday = data.schedules.find(schedule => schedule.weekday === 5);
+            document.getElementById("tuesday_hourFrom").value = getTuesday.hourFrom;
+            document.getElementById("tuesday_hourTo").value = getTuesday.hourTo;
+
+            const getMonday = data.schedules.find(schedule => schedule.weekday === 6);
+            document.getElementById("monday_hourFrom").value = getMonday.hourFrom;
+            document.getElementById("monday_hourTo").value = getMonday.hourTo;
+
+         }
 
       }
     })
