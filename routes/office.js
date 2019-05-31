@@ -10,7 +10,6 @@ router.get('/new', function (req, res){
 });
 
 router.post('/new', function (req, res){
-    console.log(req.body)
     res.render('./pages/office')
 });
 
