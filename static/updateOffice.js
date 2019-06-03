@@ -1,25 +1,28 @@
 var json = {};
 
 $('#btn').click(function(){
-    console.log(getdata())
-    $.post('http://internal-systems.ml.com/uptime-test/offices',   // url
-       getdata(), // data to be submit
-       function(data, status, jqXHR) {// success callback
-            alert('Office add sucessfully');
-        })
+    var info = getdata()
+    $.ajax({
+        url: info.url,
+        type: 'PUT',
+        data: info,
+        success: function(data) {
+          alert('Office edit sucessfully');
+        },
+        error: function (xhr, textStatus, errorThrown) {  
+          alert('Error: ' +xhr, textStatus, errorThrown);
+        }
+      });
 });
 
 
 function getdata(){
 
-    /* json.schedules = [];
-    $('input:checked').each(function(i){
-        json.schedules.push({ 'hourFrom' : $(this).val()});
-    }); */
-
     json.description = document.getElementById("description").value;
     json.timeZoneOffset = Number(document.getElementById("timezone").value);
     json.ponderation = document.getElementById("ponderation").value;
+    json.id = document.getElementById("id").value;
+    json.url = `http://internal-systems.ml.com/uptime-test/offices/${id}`
 
 
 	json.schedules = [];
