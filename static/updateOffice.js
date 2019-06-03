@@ -1,29 +1,22 @@
 var json = {};
 
 $('#btn').click(function(){
-    var teste = getdata()
-    console.log(teste)
+    var info = getdata()
     $.ajax({
-        url: teste.url,
+        url: info.url,
         type: 'PUT',
-        dataType: 'json',
-        data: teste,
+        data: info,
         success: function(data) {
-          console.log('OK');
+          alert('Office edit sucessfully');
         },
         error: function (xhr, textStatus, errorThrown) {  
-            console.log(xhr, textStatus, errorThrown);  
+          alert('Error: ' +xhr, textStatus, errorThrown);
         }
       });
 });
 
 
 function getdata(){
-
-    /* json.schedules = [];
-    $('input:checked').each(function(i){
-        json.schedules.push({ 'hourFrom' : $(this).val()});
-    }); */
 
     json.description = document.getElementById("description").value;
     json.timeZoneOffset = Number(document.getElementById("timezone").value);

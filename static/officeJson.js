@@ -5,7 +5,7 @@ $('#btn').click(function(){
     $.post('http://internal-systems.ml.com/uptime-test/offices',   // url
        getdata(), // data to be submit
        function(data, status, jqXHR) {// success callback
-                console.log('status: ' + status + ', data: ' + data);
+            alert('Office add sucessfully');
         })
 });
 
