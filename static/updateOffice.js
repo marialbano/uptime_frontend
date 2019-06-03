@@ -6,7 +6,6 @@ $('#btn').click(function(){
     $.ajax({
         url: teste.url,
         type: 'PUT',
-        dataType: 'json',
         data: teste,
         success: function(data) {
           console.log('OK');
