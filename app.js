@@ -16,11 +16,9 @@ app.use(bodyParser.urlencoded()) // Com essa configuração, vamos conseguir par
 // adicionando arquivo de rotas
 const officeRoute = require('./routes/office');
 const eventsRoute = require('./routes/events');
-const postmortemRoute = require('./routes/postmortem');
 
 app.use('/office', officeRoute);
 app.use('/events', eventsRoute);
-app.use('/postmortem', postmortemRoute);
 
 app.get('/login', (req, res) => {
     res.render('./pages/login')

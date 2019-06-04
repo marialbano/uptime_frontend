@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/:id', (req, res) => {
-    res.render('./pages/eventInfo', {id: req.params})
+    res.render('./pages/postmortem', {id: req.params})
 })
 
 module.exports = router;

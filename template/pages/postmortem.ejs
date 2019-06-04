@@ -18,7 +18,6 @@
 
 <!-- /.box-header -->
 <!-- form start -->
-        <form role="form" method="post">
             <div class="box-body">
                 <div class="form-group col-lg-2">
                     <label>ID</label>
@@ -43,10 +42,9 @@
                 </div>
                 <div class="form-group col-lg-12">
                     <label>Status</label>                   
-                    <select name="Status" id="status" class="form-control">
-                        <option selected="selected" value="resolved">Resolved</option>
-                        <option value="partial_resolved">Partial Resolved</option>
-                        <option value="not_solved">Not Solved</option>
+                    <select name="status" id="status" class="form-control">
+                        <option selected="selected" value=0>Resolved</option>
+                        <option value=1>Not Solved</option>
                     </select>
 
                 </div>
@@ -58,23 +56,25 @@
                 <a class="btn btn-danger" href="/events" role="button">Close</a>
 
             </div>
-        </form>
         </div>
         </div>
     </div>
 </section>
 <script src="../../bower_components/jquery/style/jquery.min.js"></script>
+<script src="/updatePostMortem.js"></script>
 <script>
     var id = '<%= id["id"] %>';
     var url = `http://internal-systems.ml.com/uptime-test/downtimes/${id}`
+    var ponderation = 0;
     $.get(url, (data, status) => {
       if (status == 'success') {
+        ponderation = data.ponderation;
         document.getElementById("id").value = data.id;
         document.getElementById("metric").value = data.metric;
         document.getElementById("startDate").value = new Date(data.startDateTime).toLocaleString();
         document.getElementById("endDate").value = new Date(data.endDateTime).toLocaleString();
         if(data.postMortem){
-            document.getElementById("description").value = data.comments;
+            document.getElementById("description").value = data.postMortem;
             document.getElementById("status").value = data.postMortemStatus;
             $('#create').prop('disabled', true);
             $('#description').prop('disabled', true);
