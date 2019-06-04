@@ -19,11 +19,10 @@ $('#create').click(function(){
 
 
 function getdata(){
-
     json.postMortem = document.getElementById("description").value;
     json.comments = "";
     json.postMortemStatus = document.getElementById("status").value;
-    json.ponderation = ponderation;
+    json.ponderation = document.getElementById("ponderation").value;;
 
     return json;
 }

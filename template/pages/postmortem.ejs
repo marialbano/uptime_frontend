@@ -27,13 +27,18 @@
                     <label>Issue</label>
                     <input type="text" class="form-control" id="metric" disabled></input>
                 </div>
-                <div class="form-group col-lg-6">
+                <div class="form-group col-lg-4">
                   <label>Start Date</label>
                   <input type="text" class="form-control" id="startDate" disabled></input>
                 </div>
-                <div class="form-group col-lg-6">
+                <div class="form-group col-lg-4">
                     <label>End Date</label>
                     <input type="text" class="form-control" id="endDate" disabled></input>
+                </div>
+
+                <div class="form-group col-lg-4">
+                    <label>Ponderation</label>
+                    <input type="text" class="form-control" id="ponderation"></input>
                 </div>
 
                 <div class="form-group col-lg-12">
@@ -68,16 +73,15 @@
     var ponderation = 0;
     $.get(url, (data, status) => {
       if (status == 'success') {
-        ponderation = data.ponderation;
-        document.getElementById("id").value = data.id;
-        document.getElementById("metric").value = data.metric;
-        document.getElementById("startDate").value = new Date(data.startDateTime).toLocaleString();
-        document.getElementById("endDate").value = new Date(data.endDateTime).toLocaleString();
+        $("#id").val(data.id);
+        $("#metric").val(data.metric);
+        $("#startDate").val(data.startDateTime);
+        $("#endDate").val(data.endDateTime);
+        $("#ponderation").val(data.ponderation);
         if(data.postMortem){
-            document.getElementById("description").value = data.postMortem;
-            document.getElementById("status").value = data.postMortemStatus;
-            $('#create').prop('disabled', true);
-            $('#description').prop('disabled', true);
+            $("#description").val(data.postMortem);
+            $("#status").val(data.postMortemStatus);
+            $("#create").text('Update');
         }
       }
     })
