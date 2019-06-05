@@ -8,6 +8,7 @@ $('#btn').click(function(){
         data: info,
         success: function(data) {
           alert('Office edit sucessfully');
+          window.location.href = "/office"
         },
         error: function (xhr, textStatus, errorThrown) {  
           alert('Error: ' +xhr, textStatus, errorThrown);

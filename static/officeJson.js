@@ -6,6 +6,7 @@ $('#btn').click(function(){
        getdata(), // data to be submit
        function(data, status, jqXHR) {// success callback
             alert('Office add sucessfully');
+            window.location.href = "/office"
         })
 });
 

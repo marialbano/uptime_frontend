@@ -18,7 +18,6 @@
 
 <!-- /.box-header -->
 <!-- form start -->
-        <form role="form" method="post">
             <div class="box-body">
                 <div class="form-group col-lg-2">
                     <label>ID</label>
@@ -28,13 +27,18 @@
                     <label>Issue</label>
                     <input type="text" class="form-control" id="metric" disabled></input>
                 </div>
-                <div class="form-group col-lg-6">
+                <div class="form-group col-lg-4">
                   <label>Start Date</label>
                   <input type="text" class="form-control" id="startDate" disabled></input>
                 </div>
-                <div class="form-group col-lg-6">
+                <div class="form-group col-lg-4">
                     <label>End Date</label>
                     <input type="text" class="form-control" id="endDate" disabled></input>
+                </div>
+
+                <div class="form-group col-lg-4">
+                    <label>Ponderation</label>
+                    <input type="text" class="form-control" id="ponderation"></input>
                 </div>
 
                 <div class="form-group col-lg-12">
@@ -43,10 +47,9 @@
                 </div>
                 <div class="form-group col-lg-12">
                     <label>Status</label>                   
-                    <select name="Status" id="status" class="form-control">
-                        <option selected="selected" value="resolved">Resolved</option>
-                        <option value="partial_resolved">Partial Resolved</option>
-                        <option value="not_solved">Not Solved</option>
+                    <select name="status" id="status" class="form-control">
+                        <option selected="selected" value=0>Resolved</option>
+                        <option value=1>Not Solved</option>
                     </select>
 
                 </div>
@@ -58,26 +61,27 @@
                 <a class="btn btn-danger" href="/events" role="button">Close</a>
 
             </div>
-        </form>
         </div>
         </div>
     </div>
 </section>
 <script src="../../bower_components/jquery/style/jquery.min.js"></script>
+<script src="/updatePostMortem.js"></script>
 <script>
     var id = '<%= id["id"] %>';
     var url = `http://internal-systems.ml.com/uptime-test/downtimes/${id}`
+    var ponderation = 0;
     $.get(url, (data, status) => {
       if (status == 'success') {
-        document.getElementById("id").value = data.id;
-        document.getElementById("metric").value = data.metric;
-        document.getElementById("startDate").value = new Date(data.startDateTime).toLocaleString();
-        document.getElementById("endDate").value = new Date(data.endDateTime).toLocaleString();
+        $("#id").val(data.id);
+        $("#metric").val(data.metric);
+        $("#startDate").val(data.startDateTime);
+        $("#endDate").val(data.endDateTime);
+        $("#ponderation").val(data.ponderation);
         if(data.postMortem){
-            document.getElementById("description").value = data.comments;
-            document.getElementById("status").value = data.postMortemStatus;
-            $('#create').prop('disabled', true);
-            $('#description').prop('disabled', true);
+            $("#description").val(data.postMortem);
+            $("#status").val(data.postMortemStatus);
+            $("#create").text('Update');
         }
       }
     })
