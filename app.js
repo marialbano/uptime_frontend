@@ -21,11 +21,11 @@ app.use('/office', officeRoute);
 app.use('/events', eventsRoute);
 
 app.get('/login', (req, res) => {
-    res.render('./pages/login')
+    res.render('./login')
   })
 
 app.get('/', (req, res) => {
-        res.render('./pages/home')
+        res.render('./home')
     })
 
 app.use(express.static(path.join(__dirname, 'static')))
