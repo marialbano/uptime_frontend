@@ -116,18 +116,14 @@
         innerHTML += `<td>${downtimes.metric}</td>`;
         if(downtimes.postMortem == null){
           innerHTML += `<td><i class="fa fa-close" style="color:red"></i></td>`;
-          innerHTML += `<td><a href="/postmortem/${downtimes.id}">
-                        <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
-                      </a>
-                      </td>`;
         }
         else{
           innerHTML += `<td><i class="fa fa-check" style="color:green"></i></td>`;
-          innerHTML += `<td><a href="#">
-                        <button type="button" disabled class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
+        }
+        innerHTML += `<td><a href="/events/${downtimes.id}">
+                        <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> POSTMORTEM</button>
                       </a>
                       </td>`;
-        }
         
         innerHTML += "</tr>";
         list.innerHTML = innerHTML;
