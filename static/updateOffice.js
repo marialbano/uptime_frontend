@@ -33,11 +33,7 @@ function getdata(){
     sunday_hourFrom = document.getElementById("sunday_hourFrom").value;
     sunday_hourTo = document.getElementById("sunday_hourTo").value;
     if (sunday_hourFrom == "" || sunday_hourTo == "") {
-    		json.schedules.push({ 'weekday': 0,
-        						  'isActive': 0,
-                                  'changesDay': 0,
-    							  'hourFrom' : null,
-    							  'hourTo': null});
+
     } else {
     	if (sunday_hourTo == "0") {
       	    json.schedules.push({ 'weekday': 0,
@@ -59,11 +55,7 @@ function getdata(){
     monday_hourFrom = document.getElementById("monday_hourFrom").value;
     monday_hourTo = document.getElementById("monday_hourTo").value;
     if (monday_hourFrom == "" || monday_hourTo == "") {
-    		json.schedules.push({ 'weekday': 1,
-        						  'isActive': 0,
-                                  'changesDay': 0,
-    							  'hourFrom' : null,
-    							  'hourTo': null});
+
     } else {
     	if (monday_hourTo == "0") {
       	    json.schedules.push({ 'weekday': 1,
@@ -84,11 +76,7 @@ function getdata(){
     tuesday_hourFrom = document.getElementById("tuesday_hourFrom").value;
     tuesday_hourTo = document.getElementById("tuesday_hourTo").value;
     if (tuesday_hourFrom == "" || tuesday_hourTo == "") {
-    		json.schedules.push({ 'weekday': 2,
-        						  'isActive': 0,
-                                  'changesDay': 0,
-                                  'hourFrom' : null,
-                                  'hourTo': null});
+
     } else {
     	if (tuesday_hourTo == "0") {
       	json.schedules.push({ 'weekday': 2,
@@ -109,11 +97,7 @@ function getdata(){
     wednesday_hourFrom = document.getElementById("wednesday_hourFrom").value;
     wednesday_hourTo = document.getElementById("wednesday_hourTo").value;
     if (wednesday_hourFrom == "" || wednesday_hourTo == "") {
-            json.schedules.push({ 'weekday': 3,
-                                  'isActive': 0,
-                                  'changesDay': 0,
-                                  'hourFrom' : null,
-                                  'hourTo': null});
+
     } else {
         if (wednesday_hourTo == "0") {
         json.schedules.push({ 'weekday': 3,
@@ -134,11 +118,7 @@ function getdata(){
     thursday_hourFrom = document.getElementById("thursday_hourFrom").value;
     thursday_hourTo = document.getElementById("thursday_hourTo").value;
     if (thursday_hourFrom == "" || thursday_hourTo == "") {
-            json.schedules.push({ 'weekday': 4,
-                                  'isActive': 0,
-                                  'changesDay': 0,
-                                  'hourFrom' : null,
-                                  'hourTo': null});
+
     } else {
         if (thursday_hourTo == "0") {
         json.schedules.push({ 'weekday': 4,
@@ -159,11 +139,7 @@ function getdata(){
     friday_hourFrom = document.getElementById("friday_hourFrom").value;
     friday_hourTo = document.getElementById("friday_hourTo").value;
     if (friday_hourFrom == "" || friday_hourTo == "") {
-            json.schedules.push({ 'weekday': 5,
-                                  'isActive': 0,
-                                  'changesDay': 0,
-                                  'hourFrom' : null,
-                                  'hourTo': null});
+
     } else {
         if (friday_hourTo == "0") {
         json.schedules.push({ 'weekday': 5,
@@ -184,11 +160,7 @@ function getdata(){
     saturday_hourFrom = document.getElementById("saturday_hourFrom").value;
     saturday_hourTo = document.getElementById("saturday_hourTo").value;
     if (saturday_hourFrom == "" || saturday_hourTo == "") {
-            json.schedules.push({ 'weekday': 6,
-                                  'isActive': 0,
-                                  'changesDay': 0,
-                                  'hourFrom' : null,
-                                  'hourTo': null});
+        
     } else {
         if (saturday_hourTo == "0") {
         json.schedules.push({ 'weekday': 6,
