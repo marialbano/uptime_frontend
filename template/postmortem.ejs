@@ -73,10 +73,12 @@
     var ponderation = 0;
     $.get(url, (data, status) => {
       if (status == 'success') {
+        var startDate =
+        var endDate
         $("#id").val(data.id);
         $("#metric").val(data.metric);
-        $("#startDate").val(data.startDateTime);
-        $("#endDate").val(data.endDateTime);
+        $("#startDate").val(startDateTime);
+        $("#endDate").val(endDateTime);
         $("#ponderation").val(data.ponderation);
         if(data.postMortem){
             $("#description").val(data.postMortem);

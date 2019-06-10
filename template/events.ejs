@@ -28,7 +28,9 @@
                 <th width="5%">ID</th>
                 <th width="15%">Office</th>
                 <th width="25%">Group</th>
-                <th>Issue</th>
+                <th width="25%">Issue</th>
+                <th width="25%">StartDate</th>
+                <th width="25%">EndDate</th>
                 <th width="5%">PostMortem</th>
                 <th width="5%">Options</th>
                 
@@ -69,13 +71,20 @@
 <script>
   $.get('http://internal-systems.ml.com/uptime-test/downtimes', (data, status) => {
     if (status == 'success') {
+
+
       var list = document.getElementById("list")
       var innerHTML = "<tr>";
       data.forEach(downtimes => {
+        var startDateTime = new Date(`${downtimes.startDateTime}`).toLocaleString();
+        var endDateTime = new Date(`${downtimes.endDateTime}`).toLocaleString();
+
         innerHTML += `<td>${downtimes.id}</td>`;
         innerHTML += `<td>${downtimes.office}</td>`;
         innerHTML += `<td>${downtimes.group}</td>`;
         innerHTML += `<td>${downtimes.metric}</td>`;
+        innerHTML += `<td>${startDateTime}</td>`;
+        innerHTML += `<td>${endDateTime}</td>`;
         if(downtimes.postMortem == null){
           innerHTML += `<td><i class="fa fa-close" style="color:red"></i></td>`;
         }
