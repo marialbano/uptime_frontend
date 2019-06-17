@@ -73,8 +73,8 @@
     var ponderation = 0;
     $.get(url, (data, status) => {
       if (status == 'success') {
-        var startDate =
-        var endDate
+        var startDateTime = new Date(`${data.startDateTime}`).toLocaleString();
+        var endDateTime = new Date(`${data.endDateTime}`).toLocaleString();
         $("#id").val(data.id);
         $("#metric").val(data.metric);
         $("#startDate").val(startDateTime);
