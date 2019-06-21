@@ -87,7 +87,6 @@ testDB(){
     fi
 }
 
-
 echo "***** verifing if Git is up to date *****"
 pullRepoGit
 echo "***** verifing important files and directories is ok *****"
