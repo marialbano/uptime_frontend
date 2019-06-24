@@ -12,7 +12,7 @@ node {
             git url: 'git@github.com:marialbano/uptime_frontend.git'
             checkout scm
             sh "sudo docker build -t uptime:latest ${WORKSPACE}" 
-            sh "sudo docker run -d -p 3000:3000 --name uptime-test uptime:latest "
+            sh "sudo docker run -d -p 80:80 --name uptime-test uptime:latest "
 
         }
 
