@@ -68,7 +68,7 @@
 <script src="bower_components/jquery/style/jquery.min.js"></script>
 <script>
     var id = '<%= id["id"] %>';
-    var url = `http://internal-systems.ml.com/uptime-test/downtimes/${id}`
+    var url = `http://internal-systems.ml.com/uptime/downtimes/${id}`
     $.get(url, (data, status) => {
       if (status == 'success') {
         document.getElementById("id").value = data.id;

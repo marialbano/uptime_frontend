@@ -70,7 +70,7 @@
 </script>
 
 <script>
-  $.get('http://internal-systems.ml.com/uptime-test/offices', (data, status) => {
+  $.get('http://internal-systems.ml.com/uptime/offices', (data, status) => {
     if (status == 'success') {
       var list = document.getElementById("list")
       var innerHTML = "<tr>";

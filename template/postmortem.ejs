@@ -69,7 +69,7 @@
 <script src="../updatePostMortem.js"></script>
 <script>
     var id = '<%= id["id"] %>';
-    var url = `http://internal-systems.ml.com/uptime-test/downtimes/${id}`
+    var url = `http://internal-systems.ml.com/uptime/downtimes/${id}`
     var ponderation = 0;
     $.get(url, (data, status) => {
       if (status == 'success') {
