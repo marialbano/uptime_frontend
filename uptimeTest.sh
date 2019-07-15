@@ -66,34 +66,9 @@ testAPI(){
     fi
 }
 
-testConMysql(){
-    DBNAME="isupttst"
-    DBEXISTS=$( mysql -urecardoso -pKei-110891 -hisuptime01.master.mlaws.com -P6612 -e exit; echo "$?")
-    if [ $DBEXISTS -eq 0 ];then
-        echo "Conection with MySQL Ok"
-    else
-        echo "Conection fail"
-        exit 1
-    fi
-}
-testDB(){
-    DBNAME="isupttst"
-    DBEXISTS=$( mysql -urecardoso -pKei-110891 -hisuptime01.master.mlaws.com -P6612 -e "SHOW DATABASES LIKE '"$DBNAME"';" | grep "$DBNAME" > /dev/null; echo "$?")
-    if [ $DBEXISTS -eq 0 ];then
-        echo "$DBNAME Ok"
-    else
-        echo "database fail"
-        exit 1
-    fi
-}
-
 echo "***** verifing if Git is up to date *****"
 pullRepoGit
 echo "***** verifing important files and directories is ok *****"
 findFiles
 echo "***** testing API *****"
 testAPI
-echo "***** testing conection with MySQL *****"
-testConMysql
-echo "***** testing Data Base *****"
-testDB
